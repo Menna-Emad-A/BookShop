@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+
+<HBox xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="bookshopmanagementsystem.CustomerController"
+      stylesheets="@dashboardDesign.css">
+
+    <!-- Sidebar -->
+    <VBox prefWidth="200.0" spacing="20.0" alignment="TOP_LEFT"
+          styleClass="nav-form">
+        <children>
+            <Label fx:id="usernameLabel"
+                   text="User"
+                   style="-fx-text-fill:white; -fx-padding:20 0 0 10;">
+                <font><Font size="16.0"/></font>
+            </Label>
+            <Pane VBox.vgrow="ALWAYS"/>
+            <Button text="Sign Out"
+                    fx:id="signOutBtn"
+                    styleClass="sign-out"
+                    onAction="#logout"
+                    maxWidth="180.0"
+                    style="-fx-alignment:center; -fx-translate-x:10;"/>
+        </children>
+    </VBox>
+
+    <!-- Main Content -->
+    <AnchorPane fx:id="main_form" prefWidth="700.0" prefHeight="600.0">
+        <children>
+
+            <!-- Top bar -->
+            <AnchorPane prefHeight="45.0"
+                        style="-fx-background-color: linear-gradient(to right, #b76e79, #a55665);"
+                        AnchorPane.topAnchor="0.0"
+                        AnchorPane.leftAnchor="0.0"
+                        AnchorPane.rightAnchor="0.0">
+                <children>
+                    <FontAwesomeIcon glyphName="BOOK" size="1.5em"
+                                     layoutX="14.0" layoutY="28.0"
+                                     style="-fx-fill:#8e3838;"/>
+                    <Button fx:id="minimizeBtn"
+                            styleClass="icon-button"
+                            onAction="#minimize"
+                            AnchorPane.topAnchor="4.0"
+                            AnchorPane.rightAnchor="60.0">
+                        <graphic>
+                            <FontAwesomeIcon glyphName="MINUS" size="1.2em" style="-fx-fill:white;"/>
+                        </graphic>
+                    </Button>
+                    <Button fx:id="closeBtn"
+                            styleClass="icon-button"
+                            onAction="#close"
+                            AnchorPane.topAnchor="4.0"
+                            AnchorPane.rightAnchor="10.0">
+                        <graphic>
+                            <FontAwesomeIcon glyphName="CLOSE" size="1.2em" style="-fx-fill:white;"/>
+                        </graphic>
+                    </Button>
+                </children>
+            </AnchorPane>
+
+            <!-- Purchase form area -->
+            <AnchorPane layoutY="45.0"
+                        AnchorPane.leftAnchor="0.0"
+                        AnchorPane.rightAnchor="0.0"
+                        AnchorPane.bottomAnchor="0.0">
+                <children>
+
+                    <!-- White form -->
+                    <AnchorPane layoutX="20.0" layoutY="10.0"
+                                prefWidth="660.0" prefHeight="200.0"
+                                styleClass="white-bg">
+                        <children>
+                            <Label text="Book Title:" layoutX="20.0" layoutY="20.0"/>
+                            <ComboBox fx:id="purchase_bookTitle"
+                                      layoutX="120.0" layoutY="16.0"
+                                      prefWidth="200.0"
+                                      promptText="Select book..."
+                                      onAction="#onTitleSelected"/>
+
+                            <Label text="Quantity:" layoutX="20.0" layoutY="60.0"/>
+                            <Spinner fx:id="purchase_quantity"
+                                     layoutX="120.0" layoutY="56.0"
+                                     prefWidth="80.0"/>
+
+                            <Button fx:id="purchase_addBtn" text="Add"
+                                    layoutX="350.0" layoutY="16.0"
+                                    styleClass="add-btn"
+                                    onAction="#purchaseAdd"/>
+                            <Button fx:id="purchase_payBtn" text="Pay"
+                                    layoutX="500.0" layoutY="16.0"
+                                    styleClass="add-btn"
+                                    onAction="#purchasePay"/>
+
+                            <Label text="Total:" layoutX="350.0" layoutY="60.0"/>
+                            <Label fx:id="purchase_total"
+                                   layoutX="410.0" layoutY="60.0"/>
+                        </children>
+                    </AnchorPane>
+
+                    <!-- Info panel -->
+                    <AnchorPane layoutX="700.0" layoutY="10.0"
+                                prefWidth="260.0" prefHeight="200.0"
+                                styleClass="info">
+                        <children>
+                            <Label text="Book ID:" textFill="WHITE" layoutX="10.0" layoutY="10.0"/>
+                            <Label fx:id="purchase_info_bookID" textFill="WHITE" layoutX="80.0" layoutY="10.0"/>
+                            <Label text="Title:" textFill="WHITE" layoutX="10.0" layoutY="40.0"/>
+                            <Label fx:id="purchase_info_bookTitle" textFill="WHITE" layoutX="80.0" layoutY="40.0"/>
+                            <Label text="Author:" textFill="WHITE" layoutX="10.0" layoutY="70.0"/>
+                            <Label fx:id="purchase_info_author" textFill="WHITE" layoutX="80.0" layoutY="70.0"/>
+                            <Label text="Genre:" textFill="WHITE" layoutX="10.0" layoutY="100.0"/>
+                            <Label fx:id="purchase_info_genre" textFill="WHITE" layoutX="80.0" layoutY="100.0"/>
+                            <Label text="Pub Date:" textFill="WHITE" layoutX="10.0" layoutY="130.0"/>
+                            <Label fx:id="purchase_info_date" textFill="WHITE" layoutX="80.0" layoutY="130.0"/>
+                        </children>
+                    </AnchorPane>
+
+                    <!-- TableView -->
+                    <TableView fx:id="purchase_tableView"
+                               layoutX="20.0" layoutY="230.0"
+                               prefWidth="940.0" prefHeight="330.0"
+                               styleClass="table-view">
+                        <columns>
+                            <TableColumn fx:id="purchase_col_bookID" text="ID" prefWidth="50.0"/>
+                            <TableColumn fx:id="purchase_col_bookTitle" text="Title" prefWidth="200.0"/>
+                            <TableColumn fx:id="purchase_col_author" text="Author" prefWidth="150.0"/>
+                            <TableColumn fx:id="purchase_col_genre" text="Genre" prefWidth="100.0"/>
+                            <TableColumn fx:id="purchase_col_quantity" text="Qty" prefWidth="50.0"/>
+                            <TableColumn fx:id="purchase_col_price" text="Price" prefWidth="80.0"/>
+                        </columns>
+                    </TableView>
+
+                </children>
+            </AnchorPane>
+        </children>
+    </AnchorPane>
+</HBox>
