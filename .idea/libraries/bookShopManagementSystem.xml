@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bookShopManagementSystem">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bookShopManagementSystem/dist/bookShopManagementSystem.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
