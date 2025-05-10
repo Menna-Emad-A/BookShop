@@ -1,0 +1,56 @@
+/* تعديل لون الجزء الأيسر */
+.left-form {
+    -fx-background-color: linear-gradient(to top right, #b76e79, #a55665); /* تدرج اللون الكشمير */
+    -fx-border-color: #000;
+    -fx-border-width: .4px 0px .4px .4px;
+}
+
+/* تعديل لون الجزء الأيمن */
+.right-form {
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .4px 0px;
+}
+
+/* تعديل تصميم زر الإغلاق */
+.close {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.close:hover {
+    -fx-background-color: #ff496a; /* الأحمر الفاتح */
+}
+
+/* تعديل الحقول النصية */
+.textfield {
+    -fx-background-color: linear-gradient(to bottom, #f4e1e1, #f5b3d1); /* تدرج اللون الوردي الفاتح */
+    -fx-background-radius: 4px;
+    -fx-font-size: 13px;
+    -fx-border-color: #000;
+    -fx-border-width: .4px;
+    -fx-border-radius: 4px;
+    -fx-font-family: Tahoma;
+}
+
+/* تعديل مظهر الحقول عند التركيز */
+.textfield:focused {
+    -fx-background-color: #fff;
+    -fx-border-color: linear-gradient(to top right, #b76e79, #a55665); /* تدرج اللون الكشمير */
+    -fx-border-width: 1px;
+}
+
+/* تعديل زر الدخول */
+.login-btn {
+    -fx-background-color: linear-gradient(to top, #8c4d59, #a56e74); /* اللون الكشمير للأزرار */
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+}
+
+/* تعديل اللون عند تمرير الفأرة فوق الزر */
+.login-btn:hover {
+    -fx-background-color: linear-gradient(to top, #a56e74, #b0839e); /* تدرج اللون الفاتح */
+}
