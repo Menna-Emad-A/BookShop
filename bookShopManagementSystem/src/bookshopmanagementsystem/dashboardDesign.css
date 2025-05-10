@@ -1,0 +1,246 @@
+/* ========== MAIN STYLES ========== */
+.top-form {
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .2px .4px;
+}
+
+.semi-top-form {
+    -fx-background-color: #efefef;
+    -fx-border-color: #000;
+    -fx-border-width: .2px .4px .4px .4px;
+}
+
+.close {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.close:hover {
+    -fx-background-color: #ff496a;
+}
+
+.minimize {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.minimize:hover {
+    -fx-background-color: #ddd;
+}
+
+/* ========== NAVIGATION ========== */
+.nav-form {
+    -fx-background-color: linear-gradient(to top right, #b76e79, #a55665);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 8,0,0,0);
+}
+
+/* ===== التعديلات المطلوبة فقط ===== */
+.nav-btn {
+    -fx-background-color: #a55665 !important;
+    -fx-text-fill: white !important;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-alignment: CENTER-LEFT;
+    -fx-background-radius: 8px;
+    -fx-padding: 10px 15px;
+    -fx-cursor: hand;
+}
+
+/* زر Dashboard */
+#dashboard_btn {
+    -fx-translate-y: 0;
+}
+
+/* زر Available Books مع المسافة */
+#availableBooks_btn {
+    -fx-translate-y: 8px; /* المسافة بين الأزرار */
+}
+
+.nav-btn:hover,
+.nav-btn:pressed,
+.nav-btn:focused {
+    -fx-background-color: #a55665 !important;
+    -fx-text-fill: white !important;
+}
+
+.nav-btn FontAwesomeIcon {
+    -fx-fill: white !important;
+}
+
+.sign-out {
+    -fx-background-color: #8c4d59;
+    -fx-cursor: hand;
+    -fx-background-radius: 20px;
+}
+
+.sign-out:hover {
+    -fx-background-color: #a56e74;
+}
+
+/* ========== WHITE BACKGROUNDS ========== */
+.white-bg {
+    -fx-background-color: #fff;
+    -fx-background-radius: 8px;
+}
+
+/* ========== CARDS ========== */
+.card {
+    -fx-background-color: linear-gradient(to bottom right, #b76e79, #a55665);
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 0);
+    -fx-padding: 15px;
+}
+
+.card Label {
+    -fx-text-fill: #fff;
+    -fx-font-family: "Arial";
+}
+
+.card FontAwesomeIcon {
+    -fx-fill: #fff;
+}
+
+/* ========== BUTTONS ========== */
+.add-btn {
+    -fx-background-color: #8c4d59;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-text-fill: #fff;
+}
+
+.add-btn:hover {
+    -fx-background-color: #a56e74;
+}
+
+.update-btn {
+    -fx-background-color: #b0839e;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-text-fill: #fff;
+}
+
+.update-btn:hover {
+    -fx-background-color: #f1aac2;
+}
+
+.clear-btn {
+    -fx-background-color: #9f6e8e;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-text-fill: #fff;
+}
+
+.clear-btn:hover {
+    -fx-background-color: #f1aac2;
+}
+
+.delete-btn {
+    -fx-background-color: #8c4d59;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-font-family: Arial;
+    -fx-text-fill: #fff;
+}
+
+.delete-btn:hover {
+    -fx-background-color: #a56e74;
+}
+
+/* ========== TEXT FIELDS ========== */
+.textfield {
+    -fx-background-color: linear-gradient(to bottom, #efefef, #eee);
+    -fx-background-radius: 2px;
+    -fx-font-family: Tahoma;
+    -fx-border-color: #000;
+    -fx-border-radius: 2px;
+    -fx-border-width: .4px;
+}
+
+.textfield:focused {
+    -fx-border-color: linear-gradient(to top right, #d4a2b8, #f5b3d1);
+    -fx-background-color: #fff;
+    -fx-border-width: 1px;
+}
+
+/* ========== SEARCH ========== */
+.search {
+    -fx-background-color: transparent;
+    -fx-font-size: 13px;
+    -fx-font-family: Arial;
+    -fx-border-color: linear-gradient(to top right, #d4a2b8, #f5b3d1);
+    -fx-border-radius: 4px;
+    -fx-border-width: .8px;
+    -fx-padding: 0px 0px 0px 28px;
+}
+
+.search:focused {
+    -fx-border-width: 1.5px;
+}
+
+/* ========== TABLES ========== */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to top right, #b76e79, #a55665);
+    -fx-border-radius: 8px;
+    -fx-border-width: 2px;
+    -fx-padding: 0px;
+}
+
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to top right, #b76e79, #a55665);
+    -fx-background-radius: 8px 8px 0px 0px;
+    -fx-background-insets: 0 0 0 0;
+}
+
+.table-view .column-header, .filter {
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: #fff;
+    -fx-font-family: Arial;
+}
+
+/* ========== INFO PANELS ========== */
+.info {
+    -fx-background-color: linear-gradient(to top right, #b76e79, #a55665);
+    -fx-background-radius: 0 8px 8px 0;
+    -fx-padding: 10px;
+}
+
+.info-label {
+    -fx-background-color: transparent;
+    -fx-text-fill: #fff;
+    -fx-font-weight: bold;
+}
+
+/* ========== TABLE SELECTION ========== */
+.table-view .table-row-cell:selected {
+    -fx-background-color: #f9d5e5;
+    -fx-text-fill: #000;
+}
+
+.table-view .table-row-cell:selected .text {
+    -fx-fill: #000;
+}
+
+
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #f9d5e5;
+    -fx-border-color: #a55665;
+    -fx-border-width: 1px;
+}
