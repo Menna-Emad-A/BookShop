@@ -1,4 +1,4 @@
-package bookshopmanagementsystem;
+package bookshopmanagementsystem.ui;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -7,6 +7,9 @@ import java.sql.ResultSet;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import bookshopmanagementsystem.customerData;
+import bookshopmanagementsystem.getData;
+import bookshopmanagementsystem.patterns.database;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -53,10 +56,8 @@ public class CustomerController implements Initializable {
 
     @Override
     public void initialize(URL loc, ResourceBundle rb) {
-        // show logged-in user
         usernameLabel.setText(getData.username);
 
-        // draggable window
         main_form.setOnMousePressed((MouseEvent e)->{
             xOffset=e.getSceneX(); yOffset=e.getSceneY();
         });
@@ -79,12 +80,18 @@ public class CustomerController implements Initializable {
     }
 
     private void loadBookTitles() {
+        System.out.println("[DEBUG] Trying to load book titles...");
         String sql="SELECT title FROM book";
-        try(Connection conn=database.connectDb();
+        try(Connection conn = database.getInstance().getConnection();
+
             PreparedStatement p=conn.prepareStatement(sql);
             ResultSet rs=p.executeQuery()) {
             ObservableList<String> list=FXCollections.observableArrayList();
-            while(rs.next()) list.add(rs.getString("title"));
+            while(rs.next()) {
+                String title = rs.getString("title");
+                System.out.println("[DEBUG] Found book: " + title);
+                list.add(title);
+            }
             purchase_bookTitle.setItems(list);
             purchase_bookTitle.setOnAction(e->onTitleSelected());
         } catch(Exception e){
@@ -97,7 +104,8 @@ public class CustomerController implements Initializable {
         String title=purchase_bookTitle.getValue();
         if(title==null) return;
         String sql="SELECT * FROM book WHERE title=?";
-        try(Connection conn=database.connectDb();
+        try(Connection conn = database.getInstance().getConnection();
+
             PreparedStatement p=conn.prepareStatement(sql)) {
             p.setString(1,title);
             ResultSet rs=p.executeQuery();
@@ -112,14 +120,12 @@ public class CustomerController implements Initializable {
     }
 
     private void assignCustomerId() {
-        try(Connection conn=database.connectDb()) {
-            // current cart max
+        try(Connection conn = database.getInstance().getConnection()) {
             PreparedStatement p1=conn.prepareStatement(
                     "SELECT MAX(customer_id) FROM customer");
             ResultSet r1=p1.executeQuery(); if(r1.next())
                 customerId=r1.getInt(1);
 
-            // last completed
             PreparedStatement p2=conn.prepareStatement(
                     "SELECT MAX(customer_id) FROM customer_info");
             ResultSet r2=p2.executeQuery();
@@ -140,7 +146,7 @@ public class CustomerController implements Initializable {
         assignCustomerId();
         int qty=purchase_quantity.getValue();
         double unit=0;
-        try(Connection conn=database.connectDb();
+        try(Connection conn = database.getInstance().getConnection();
             PreparedStatement p=conn.prepareStatement(
                     "SELECT price FROM book WHERE title=?")) {
             p.setString(1,purchase_bookTitle.getValue());
@@ -152,7 +158,8 @@ public class CustomerController implements Initializable {
         String sql="INSERT INTO customer "
                 + "(customer_id, book_id, title, author, genre, quantity, price, date) "
                 + "VALUES (?,?,?,?,?,?,?,CURDATE())";
-        try(Connection conn=database.connectDb();
+        try(Connection conn = database.getInstance().getConnection();
+
             PreparedStatement p=conn.prepareStatement(sql)) {
             p.setInt(1,customerId);
             p.setInt(2,Integer.parseInt(purchase_info_bookID.getText()));
@@ -172,7 +179,8 @@ public class CustomerController implements Initializable {
         assignCustomerId();
         purchaseCustomerList=FXCollections.observableArrayList();
         String sql="SELECT * FROM customer WHERE customer_id=?";
-        try(Connection conn=database.connectDb();
+        try(Connection conn = database.getInstance().getConnection();
+
             PreparedStatement p=conn.prepareStatement(sql)) {
             p.setInt(1,customerId);
             ResultSet r=p.executeQuery();
@@ -208,7 +216,8 @@ public class CustomerController implements Initializable {
 
     private void purchaseDisplayTotal() {
         String sql="SELECT SUM(price) FROM customer WHERE customer_id="+customerId;
-        try(Connection conn=database.connectDb();
+        try(Connection conn = database.getInstance().getConnection()
+            ;
             PreparedStatement p=conn.prepareStatement(sql);
             ResultSet r=p.executeQuery()) {
             if(r.next()) displayTotal=r.getDouble(1);
@@ -228,7 +237,7 @@ public class CustomerController implements Initializable {
         a.setHeaderText(null);
         Optional<ButtonType> opt=a.showAndWait();
         if(opt.isPresent() && opt.get()==ButtonType.OK) {
-            try(Connection conn=database.connectDb()) {
+            try(Connection conn = database.getInstance().getConnection()) {
                 PreparedStatement p1=conn.prepareStatement(
                         "INSERT INTO customer_info (customer_id,total,date) "
                                 + "VALUES (?,?,CURDATE())");
